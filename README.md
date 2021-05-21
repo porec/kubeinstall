@@ -1,4 +1,4 @@
-This automates deployment of Kubernetes with Master Node and any amount of Worker Nodes on CentOS 8 Upstream.
+#This automates deployment of Kubernetes with Master Node and any amount of Worker Nodes on CentOS 8 Upstream.
 
 Scripts are using this guidance with some adjustments for automation purposes:
 
@@ -9,7 +9,7 @@ Follow these steps to deploy Kubernetes:
 1. Install Centos 8 on your Virtual Environment: i.e. VMWare Fusion
 2. Login as root to your Master Node and Worker Nodes and deploy git by using:
 
-	yum install git	
+	**yum install git**	
 
 3. Get this repository by using:
 
