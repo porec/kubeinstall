@@ -28,9 +28,11 @@ echo "--------------------------------------------------------------------------
 firewall-cmd --add-masquerade --permanent
 sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Reloading firewall${reset}"
+echo "${green}Disabling and Reloading firewall. DO NOT DISABLE FIREWALL IN PPRODUCTION${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
+systemctl disable firewalld
 firewall-cmd --reload
+systemctl stop firewalld
 sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 echo "${green}Set bridged packets to traverse iptables rules${reset}"
