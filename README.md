@@ -21,14 +21,13 @@ Follow these steps to deploy Kubernetes:
 
 5. Make files owned by root and executable
 
-	**chmod 777 install_common.sh**
-	**chmod 777 configure_master.sh**
+	**chmod 777 * **
 
 6. Run install_common.sh on Master node and all Worker Nodes. This will prepare your system for Kubernetes implementation
 
 	**./install_common.sh**
 
-7. Run configure_master.sh ONLY on Master node. This will configure Kubernetes Master Node with Control Plane and will deploye Calico CNI for Network Management. Please also take a note on command for connectivity from Worker Nodes. Visible under red colored statement "Remember to copy tokens for adding Worker Nodes".
+7. Run configure_master.sh ONLY on Master node. This will configure Kubernetes Master Node with Control Plane and will deploye Calico CNI for Network Management. Please also take a note on command for connectivity from Worker Nodes. Visible under red colored statement "Remember to copy tokens for adding Worker Nodes". You can also modify subnet allocated to pods by Calico CNI. Default subnet is 192.168.50.0/24
 
 	**./configure_master.sh**
 
@@ -36,3 +35,7 @@ Follow these steps to deploy Kubernetes:
 
 	**kubeadm join 192.168.250.2:6443 --token <YOUR_TOKEN> \
 	--discovery-token-ca-cert-hash sha256: <YOUR_TOKEN_HASH>**
+
+9. Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet)
+
+	**./deploy_metal_lb.sh**
