@@ -1,38 +1,48 @@
 #!/bin/bash
-
 green=`tput setaf 2`
-red=`tput setaf 1`
-reset=`tput sgr0` 
+reset=`tput sgr0`
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Configure kubeadm${reset}"
+echo "${green}Enabling strict ARP mode${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-kubeadm config images pull
+kubectl get configmap kube-proxy -n kube-system -o yaml | sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
 sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Initiating Maste with subnet for CNIs 192.168.50.0/24. Can be customized by editing file${reset}"
+echo "${green}Creating namespace for MetalLB${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-kubeadm init --pod-network-cidr 192.168.50.0/24
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${red}Remember to copy tokens for adding Worker Nodes${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Deploying Calico CNI{reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-mkdir -p $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/namespace.yaml
 sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Deploying Calico CNI{reset}"
+echo "${green}Deploying Metal LB${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.6/manifests/metallb.yaml
 sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Enable pods to be able to run on Master Node{reset}"
+echo "${green}Creating secret to enable communication between MetalLB speakers${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-kubectl taint nodes --all node-role.kubernetes.io/master-
-sleep 20s
+kubectl create secret generic -n metallb-system memberlist --from-literal=secretkey="$(openssl rand -base64 128)"
+sleep 1s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}checking nodes${reset}"
+echo "${green}Configuring MetalLB - External addresses 192.168.250.100-192.168.250.110 - can be changed in a file to customise${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-kubectl get nodes -o wide
+cat <<EOF > mlb.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 192.168.250.100-192.168.250.110
+EOF
+
+kubectl apply -f mlb.yaml
+sleep 1s
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Deploying NGINX Ingress Controller for MetalLB${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.46.0/deploy/static/provider/baremetal/deploy.yaml
+sleep 1s
