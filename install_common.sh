@@ -99,4 +99,39 @@ else
 fi
 docker version
 sleep 1s
-
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Installing Kubernetes${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+sleep 1s
+echo ""
+echo ""
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Adding the Kubernetes repository to your package manager by creating the following file${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+exclude=kubelet kubeadm kubectl
+EOF
+sleep 1s
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Updating repository information${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+dnf upgrade -y --nobest 
+sleep 1s
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Installing necessary compinents for Kubernetes${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+dnf install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+sleep 1s
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Starting Kubelet service${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+systemctl enable kubelet
+systemctl start kubelet
+systemctl status kubelet
