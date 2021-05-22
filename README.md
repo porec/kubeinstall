@@ -38,6 +38,6 @@ Follow these steps to deploy Kubernetes:
 	**kubeadm join 192.168.250.2:6443 --token <YOUR_TOKEN> \
 	--discovery-token-ca-cert-hash sha256: <YOUR_TOKEN_HASH>**
 
-9. Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet)
+9. **Only on Master Node!** Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet)
 
 	**./deploy_metal_lb.sh**
