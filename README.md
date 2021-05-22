@@ -21,9 +21,7 @@ Follow these steps to deploy Kubernetes:
 
 5. Make files owned by root and executable
 
-	**chmod 777 install_common.sh**
-	**chmod 777 configure_master.sh**
-	**chmod 777 deploy_mental_lb.sh**	
+	**chmod 777 '*' **
 
 6. Run install_common.sh on Master node and all Worker Nodes. This will prepare your system for Kubernetes implementation
 
@@ -41,3 +39,7 @@ Follow these steps to deploy Kubernetes:
 9. **Only on Master Node!** Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet)
 
 	**./deploy_metal_lb.sh**
+
+10. **Only if you want to deploy Palo Alto Networks Prisma Cloud Compute and you have valid license for it!** Deploy Prisma Cloud Compute. Execute the following script on your Master Node.
+
+	**./pcc_deploy.sh**
