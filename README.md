@@ -33,7 +33,7 @@ Follow these steps to deploy Kubernetes:
 
 	**./configure_master.sh**
 
-8. **Only on Worker Nodes** Join all Worker Nodes to Master Node by executing command on Worker Node. Command was visible on Master Node after execution of ./configure_master.sh
+8. **Only on Worker Nodes!** Join all Worker Nodes to Master Node by executing command on Worker Node. Command was visible on Master Node after execution of ./configure_master.sh
 
 	**kubeadm join 192.168.250.2:6443 --token <YOUR_TOKEN> \
 	--discovery-token-ca-cert-hash sha256: <YOUR_TOKEN_HASH>**
