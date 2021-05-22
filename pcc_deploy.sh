@@ -4,34 +4,24 @@ green=`tput setaf 2`
 red=`tput setaf 1`
 reset=`tput sgr0`
 
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Insert Prisma Cloud Compute Download link${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${red}Please Copy-Paste Prisma Cloud Compute Download link below:${reset}"
 read pcc_lnk
 export PCC_LINK=$pcc_lnk
 export PCC_FILE=$(echo $PCC_LINK | cut -d "/" -f 6)
 
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Insert Prisma Cloud Compute Access Token${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${red}Please Copy-Paste Prisma Cloud Compute Access Token below:${reset}"
 read pcc_tok
 export PCC_TOKEN=$pcc_tok
 
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Insert Prisma Cloud Compute license key${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${red}Please Copy-Paste Prisma Cloud Compute License key below:${reset}"
 read pcc_lic
 export PCC_LICENSE=$pcc_lic
 
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Input initial user name for login to Prisma Cloud Compute Console: i.e. admin${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${red} Please provide initial user name for login to Prisma Cloud Compute Console below: i.e. admin${reset}"
 read usr_nam
 export PCC_USER=$usr_nam
 
-echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Input password for initial user ${PCC_USER}${reset}"
-echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${red}Please provide password for initial user ${PCC_USER} below: ${reset}"
 read usr_pas
 export PCC_PASS=$usr_pas
 
