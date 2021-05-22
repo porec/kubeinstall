@@ -156,7 +156,7 @@ echo "--------------------------------------------------------------------------
 echo "${green}Generating Defender Deployment File ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 
-linux/twistcli defender export kubernetes --privileged --address https://192.168.250.100:8083 --user $PCC_USER --password $PCC_PASS --cluster-address $PCC_CIP:30084
+linux/twistcli defender export kubernetes --privileged --address https://$PCC_CIP:8083 --user $PCC_USER --password $PCC_PASS --cluster-address $PCC_CIP:30084
 
 sleep 3s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
