@@ -21,7 +21,7 @@ Follow these steps to deploy Kubernetes:
 
 5. Make files owned by root and executable
 
-	**chmod 777 '*' **
+	chmod 777 *
 
 6. Run install_common.sh on Master node and all Worker Nodes. This will prepare your system for Kubernetes implementation
 
