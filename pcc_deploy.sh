@@ -162,7 +162,7 @@ curl -k \
 
 sleep 3s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}ADDING SAN Fields with Service IP address: ${PCC_SIP} and Cluster IP address: ${PCC_CIP}  ${reset}"
+echo "${green}Adding SAN Fields with Service IP address: ${PCC_SIP} and Cluster IP address: ${PCC_CIP}  ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 
 
@@ -184,14 +184,14 @@ curl -k \
 
 
 
-sleep 3s
+sleep 10s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 echo "${green}Generating Defender Deployment File ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 
 linux/twistcli defender export kubernetes --privileged --address https://$PCC_SIP:8083 --user $PCC_USER --password $PCC_PASS --cluster-address $PCC_CIP:30084
 
-sleep 3s
+sleep 10s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 echo "${green}Deploying Defenders ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
