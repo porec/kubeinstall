@@ -99,7 +99,7 @@ sed -i '/  port: 8084/a\    nodePort: 30084' twistlock_console.yaml
 
 sleep 3s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Deploying Prisma Cloud Compute Console ${reset}"
+echo "${green}Deploying Prisma Cloud Compute Console. Please Wait for 1 minute ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 
 
@@ -115,8 +115,15 @@ export PCC_CIP=$(kubectl get pod -A -o wide | grep etcd-master | awk '{print $7}
 export PCC_SIP=$(kubectl get services -A | grep twistlock-console | awk '{print $5}')
 
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}Creating Initital User for Prisma Cloud Compute ${reset}"
+echo "${green}Service IP Adress is: ${PCC_SIP} ${reset}"
+echo "${green}Cluster IP Adress is: ${PCC_CIP} ${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
+
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}Creating Initital User for Prisma Cloud Compute. Please Wait for 1 minute. ${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+
+sleep 60s
 
 #Create initial username
 
@@ -150,6 +157,32 @@ curl -k \
   -X POST \
   -d '{"key": "'${PCC_LICENSE}'"}' \
   https://$PCC_SIP:8083/api/v1/settings/license --insecure
+
+
+
+sleep 3s
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}ADDING SAN Fields with Service IP address: ${PCC_SIP} and Cluster IP address: ${PCC_CIP}  ${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+
+
+
+curl -k \
+  -H 'Authorization: Bearer '${API_TOKEN}'' \
+  -H 'Content-Type: application/json' \
+  -w "\nResponse code: %{http_code}\n" \
+  -X POST \
+  -d '
+  {
+    "consoleSAN": [
+      "'${PCC_SIP}'",
+      "'${PCC_CIP}'",
+      "127.0.0.1"
+    ]
+  }' \
+  https://$PCC_SIP:8083/api/v1/settings/certs --insecure
+
+
 
 sleep 3s
 echo "------------------------------------------------------------------------------------------------------------------------------------"
