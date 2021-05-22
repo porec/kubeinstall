@@ -17,7 +17,7 @@ echo "${red}Please Copy-Paste Prisma Cloud Compute License key below:${reset}"
 read pcc_lic
 export PCC_LICENSE=$pcc_lic
 
-echo "${red} Please provide initial user name for login to Prisma Cloud Compute Console below: i.e. admin${reset}"
+echo "${red}Please provide initial user name for login to Prisma Cloud Compute Console below: i.e. admin${reset}"
 read usr_nam
 export PCC_USER=$usr_nam
 
