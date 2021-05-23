@@ -46,6 +46,6 @@ Follow these steps to deploy Kubernetes:
 	b. Prisma Cloud Compute Access Token (provided with License)
 	c. Prisma Cloud Compute Software Download Link (Instructions here: https://docs.twistlock.com/docs/releases/release-information/download.html)
 
-When you have a,b,c availabe, run:
+	When you have a,b,c availabe, run the following
 
 	**./pcc_deploy.sh**
