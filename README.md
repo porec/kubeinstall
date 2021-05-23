@@ -40,11 +40,11 @@ Follow these steps to deploy Kubernetes:
 
 	**./deploy_metal_lb.sh**
 
-10. **Only if you want to deploy Palo Alto Networks Prisma Cloud Compute and you have valid license for it!** Deploy Prisma Cloud Compute. Execute the following script on your Master Node. You need to have:
+10. **Only if you want to deploy Palo Alto Networks Prisma Cloud Compute and you have valid license for it!** Deploy Prisma Cloud Compute. Execute the following script on your Master Node. You need to have
 
-	a. Prisma Cloud Comoute License
-	b. Prisma Cloud Compute Access Token (provided with License)
-	c. Prisma Cloud Compute Software Download Link (Instructions here: https://docs.twistlock.com/docs/releases/release-information/download.html)
+     a. Prisma Cloud Comoute License
+     b. Prisma Cloud Compute Access Token (provided with License)
+     c. Prisma Cloud Compute Software Download Link (Instructions here: https://docs.twistlock.com/docs/releases/release-information/download.html)
 
 	When you have a,b,c availabe, run the following
 
