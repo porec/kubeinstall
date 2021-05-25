@@ -4,6 +4,8 @@ Scripts are using this guidance with some adjustments for automation purposes:
 
 https://upcloud.com/community/tutorials/install-kubernetes-cluster-centos-8/
 
+These deployment assumes usage of 192.168.250.0/24 subnet, but can be modified. Basically, if you use different subnet, make sure you use IP range from your subnet in step 9.
+
 Follow these steps to deploy Kubernetes:
 
 1. Install Centos 8 on your Virtual Environment: i.e. VMWare Fusion
@@ -36,7 +38,7 @@ Follow these steps to deploy Kubernetes:
 	**kubeadm join <MASTER_NODE_IP>:6443 --token <YOUR_TOKEN> \
 	--discovery-token-ca-cert-hash sha256: <YOUR_TOKEN_HASH>**
 
-9. **Only on Master Node!** Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet)
+9. **Only on Master Node!** Deploy External LoadBalancer - Metal LB for Bare Metal deployments. Details here: https://metallb.universe.tf/installation/. You can modify External IP Address. Default is 192.168.250.100-192.168.250.110 (they shall be from host subnet).
 
 	**./deploy_metal_lb.sh**
 
@@ -52,4 +54,4 @@ Follow these steps to deploy Kubernetes:
 
 	**./pcc_deploy.sh**
 
-	11. **You will be able to access Prisma Cloud Compute via IP Address mentioned in result of script execution**
+11. **You will be able to access Prisma Cloud Compute via IP Address mentioned in result of script execution**
