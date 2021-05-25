@@ -188,9 +188,17 @@ echo "--------------------------------------------------------------------------
 
 kubectl create -f defender.yaml
 
+sleep 10s
+
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+echo "${green}You can access Prisma Cloud Compute console via Service IP address: ${PCC_SIP}${reset}"
+echo "------------------------------------------------------------------------------------------------------------------------------------"
+
+
+
+
 #curl -k \
 #  -H 'Authorization: Bearer '${API_TOKEN}'' \
 #  -H 'Content-Type: application/json' \
 #  -X GET \
 #  https://$PCC_SIP:8083/api/v1/defenders --insecure
-

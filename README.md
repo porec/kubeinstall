@@ -9,12 +9,12 @@ Follow these steps to deploy Kubernetes:
 1. Install Centos 8 on your Virtual Environment: i.e. VMWare Fusion
 2. Login as root to your Master Node and Worker Nodes and deploy git by using:
 
-	**yum install git**	
+	**yum install git**
 
 3. Get this repository by using:
 
 	**git clone https://github.com/porec/kubeinstall**
- 
+
 4. Change directory
 
 	**cd kubeinstall**
@@ -51,3 +51,5 @@ Follow these steps to deploy Kubernetes:
 	When you have a,b,c availabe, run the following
 
 	**./pcc_deploy.sh**
+
+	11. **You will be able to access Prisma Cloud Compute via IP Address mentioned in result of script execution**
