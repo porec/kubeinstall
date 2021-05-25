@@ -191,7 +191,7 @@ kubectl create -f defender.yaml
 sleep 10s
 
 echo "------------------------------------------------------------------------------------------------------------------------------------"
-echo "${green}You can access Prisma Cloud Compute console via Service IP address: ${PCC_SIP}${reset}"
+echo "${green}You can access Prisma Cloud Compute console via Service IP address: https://${PCC_SIP}:8083${reset}"
 echo "------------------------------------------------------------------------------------------------------------------------------------"
 
 
