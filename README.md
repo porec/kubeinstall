@@ -4,7 +4,7 @@ Scripts are using this guidance with some adjustments for automation purposes:
 
 https://upcloud.com/community/tutorials/install-kubernetes-cluster-centos-8/
 
-These deployment assumes usage of 192.168.250.0/24 subnet, but can be modified. Basically, if you use different subnet, make sure you use IP range from your subnet in step 9. Also thid deployment assumes name of master node to be "master". This is important for Step 10, when Prisma Cloud Compute is deployed. Otherwise, not important.
+These deployment assumes usage of 192.168.250.0/24 subnet, but can be modified. Basically, if you use different subnet, make sure you use IP range from your subnet in step 9. Also this deployment assumes name of master node to be "master". This is important for Step 10, when Prisma Cloud Compute is deployed. Otherwise, not important.
 
 Follow these steps to deploy Kubernetes:
 
